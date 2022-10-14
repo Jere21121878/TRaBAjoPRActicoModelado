@@ -12,6 +12,8 @@ namespace TiendaBD
     {
         public DbSet<Vendedor> Vendedores { get; set; }
         public DbSet<Producto> Productos { get; set; }
+        public DbSet<Tiendas> Tiendaz { get; set; }
+
         public BD(DbContextOptions options) : base(options)
         { }
     }

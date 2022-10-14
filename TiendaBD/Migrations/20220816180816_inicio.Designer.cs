@@ -11,7 +11,7 @@ using TiendaBD;
 namespace TiendaBD.Migrations
 {
     [DbContext(typeof(BD))]
-    [Migration("20220806202334_inicio")]
+    [Migration("20220816180816_inicio")]
     partial class inicio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
