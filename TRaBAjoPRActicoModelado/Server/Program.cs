@@ -1,20 +1,27 @@
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 using TiendaBD;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddControllersWithViews().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 var conn = builder.Configuration.GetConnectionString("conn");
 
-builder.Services.AddDbContext<BD>(opciones =>
+builder.Services.AddDbContext<BD>(opciones => opciones.UseSqlServer(conn));
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tienda", Version = "v1" });
+}
 
-opciones.UseSqlServer(conn));
+    );
 var app = builder.Build();
-
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tienda v1"));
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
