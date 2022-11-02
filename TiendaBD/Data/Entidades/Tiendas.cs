@@ -13,5 +13,6 @@ namespace TiendaBD.Data.Entidades
         public int Cuit { get; set; }
         public string DireccionTienda { get; set; }
         public int Clave { get; set; }
+        
     }
 }

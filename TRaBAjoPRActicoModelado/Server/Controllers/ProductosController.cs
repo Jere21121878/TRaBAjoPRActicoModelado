@@ -18,7 +18,8 @@ namespace TRaBAjoPRActicoModelado.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Producto>>> Get()
         {
-            return await dbcontex.Productos.ToListAsync();
+            var resp = await dbcontex.Productos.ToListAsync();
+            return resp;
         }
         [HttpGet("{Id:int}")]
         public async Task<ActionResult<Producto>> Get(int Id)
